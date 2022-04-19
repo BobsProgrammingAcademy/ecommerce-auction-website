@@ -125,7 +125,7 @@ From the **root** directory run:
 python manage.py runserver
 ```
 
-### 3. View the application
+### View the application
 
 Go to http://127.0.0.1:8000/ to view the application.
 
