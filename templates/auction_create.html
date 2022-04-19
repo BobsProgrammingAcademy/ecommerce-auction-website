@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Auctions | {{ title }} {% endblock %}
+
+{% block categories %}
+    <!-- Divider -->
+    <hr class='sidebar-divider'>
+    
+    <!-- Heading -->
+    <div class='sidebar-heading'>
+        Categories
+    </div>
+
+    {% for category in categories %}
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'category_details_view' category.category_name %}">
+                <i class='fas fa-fw fa-folder-open'></i>
+                <span class='text-uppercase'>{{ category }}</span>
+                <span class='badge-custom'>
+                    {{ category.count_active_auctions }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+    
+{% endblock %}
+
+
+{% block body %}
+
+    <!-- Page Heading -->
+    {% if success %}
+        <br>
+        <div id='success-alert' class='alert alert-success' role='alert'>
+            The new auction created successfully.
+        </div>
+    {% else %}
+        <h1 class='h3 mb-4 text-gray-800'>Create Auction</h1>
+        <p>Enter the details of the new auction.</p>
+        
+        <div class='card mb-4'>
+            <div class='card-body'>
+                <div class='form-group'>
+                    <form action="{% url 'auction_create' %}" method='POST' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <div class='form-group'>
+                            {{ auction_form.as_p }}
+                            {{ image_form.management_form }}
+                            
+                            {% for form in image_form %}
+                                {{ form.as_p }}
+                            {% endfor %}
+                            
+                            <button type='submit' class='btn btn-primary'>
+                                Save
+                            </button>
+                            <a href="{% url 'active_auctions_view' %}" class='btn btn-secondary'>
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+
+{% endblock %}

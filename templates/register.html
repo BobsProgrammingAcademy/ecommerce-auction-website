@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Auctions | {{ title }} {% endblock %}
+
+{% block categories %}
+    <!-- Divider -->
+    <hr class='sidebar-divider'>
+    
+    <!-- Heading -->
+    <div class='sidebar-heading'>
+        Categories
+    </div>
+
+    {% for category in categories %}
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'category_details_view' category.category_name %}">
+                <i class='fas fa-fw fa-folder-open'></i>
+                <span class='text-uppercase'>{{ category }}</span>
+                <span class='badge-custom'>
+                    {{ category.count_active_auctions }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+    
+{% endblock %}
+
+
+{% block body %}
+
+    <!-- Page Heading -->
+    <h1 class='h3 mb-4 text-gray-800'>Register</h1>
+    
+    {% if message %}
+        <div class='alert alert-danger mb-3' role='alert'>
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class='card mb-4'>
+        <div class='card-body'>
+
+            <form action="{% url 'register' %}" method='POST'>
+                {% csrf_token %}
+                <div class='form-group input-group'>
+                    <div class='input-group-prepend'>
+                        <span class='input-group-text'>
+                            <i class='fa fa-user'></i>
+                        </span>
+                    </div>
+                    <input class='form-control' type='text' name='username' placeholder='Username' autofocus>
+                </div>
+                <div class='form-group input-group'>
+                    <div class='input-group-prepend'>
+                        <span class='input-group-text'>
+                            <i class='fa fa-envelope'></i>
+                        </span>
+                    </div>
+                    <input class='form-control' type='email' name='email' placeholder='Email Address'>
+                </div>
+                <div class='form-group input-group'>
+                    <div class='input-group-prepend'>
+                        <span class='input-group-text'>
+                            <i class='fa fa-lock'></i>
+                        </span>
+                    </div>
+                    <input class='form-control' type='password' name='password' placeholder='Password'>
+                </div>
+                <div class='form-group input-group'>
+                    <div class='input-group-prepend'>
+                        <span class='input-group-text'>
+                            <i class='fa fa-lock'></i>
+                        </span>
+                    </div>
+                    <input class='form-control' type='password' name='confirmation' placeholder='Confirm Password'>
+                </div>
+                <div class='input-group mb-3 mt-3'>
+                    <button type='submit' class='btn btn-primary'>Create Account</button>
+                </div>
+                <p>
+                    Already have an account? <a href="{% url 'login' %}">Log in here</a> 
+                </p>                                                          
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

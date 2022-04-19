@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+
+{% block title %}Auctions | {{ title }} {% endblock %}
+
+{% block categories %}
+    <!-- Divider -->
+    <hr class='sidebar-divider'>
+    
+    <!-- Heading -->
+    <div class='sidebar-heading'>
+        Categories
+    </div>
+
+    {% for category in categories %}
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'category_details_view' category.category_name %}">
+                <i class='fas fa-fw fa-folder-open'></i>
+                <span class='text-uppercase'>{{ category }}</span>
+                <span class='badge-custom'>
+                    {{ category.count_active_auctions }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+    
+{% endblock %}
+
+
+{% block body %}
+    
+    <!-- Page Heading -->
+    <h1 class='h3 mb-4 text-gray-800'>{{ auction.title }}</h1>
+    
+    <!-- Product category and Product creator -->
+    <h6>
+        <span class='text-muted'>
+            Category: <span class='text-primary'>{{ auction.category }}</span>
+        </span> &nbsp; | &nbsp; 
+        <span class='text-muted'>
+            Listed by: <span class='text-primary'>{{ auction.creator }}</span>
+        </span> &nbsp; | &nbsp;
+        <span class='text-muted'>Created on {{ auction.date_created}}</span>
+    </h6>
+    
+    <!-- Product price -->
+    <h4 class='fw-bolder'>
+        {% if auction.current_bid %}
+            &euro;{{auction.current_bid}}
+        {% else %}
+            &euro;{{auction.starting_bid}}
+        {% endif %}
+    </h4>
+    
+    <!-- Product reviews-->
+    <div class='d-flex justify-content-left small text-warning mb-2'>
+        <div class='bi-star-fill'></div>
+        <div class='bi-star-fill'></div>
+        <div class='bi-star-fill'></div>
+        <div class='bi-star-fill'></div>
+        <div class='bi-star'></div>
+    </div>
+    
+    <!-- Watchlist -->
+    <div>
+        <a class='btn btn-outline-success mt-auto' href="{% url 'watchlist_edit' auction.id 'auction_details_view' %}">
+            {% if auction.is_watched %}
+                Remove from Watchlist
+            {% else %}
+                Add to Watchlist
+            {% endif %}
+        </a>
+    </div>
+    <br>
+    
+    {% if auction.creator == user and auction.active %}
+        <div class='row'>
+
+            <div class='col-xl-8'>
+                <div class='card mb-4'>
+                    <div class='card-body'>
+                        
+                        <!-- Product image-->
+                        {% for image in images %}
+                            <img class='card-img-top' src="{{ image.image.url }}" alt='Product' style='width: 200px;'>
+                            {% empty %}
+                            <img class='card-img-top' src='../../../images/no_image.png' alt='Image Not Available' style='width: 300px;'>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin section: Close Auction -->
+            <div class='col-xl-4'>
+                <div class='card mb-4'>
+                    <div class='card-header'>
+                        <i class='fas fa-lock'></i>
+                        Admin section
+                    </div>
+                    <div class='card-body'>
+                        <a class='btn btn-danger mt-auto' href="{% url 'auction_close' auction.id %}">
+                            Close auction
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    {% elif auction.creator != user and auction.active %}
+    
+        <div class='row'>
+            <div class='col-xl-12'>
+                <div class='card mb-4'>
+                    <div class='card-body'>
+                    
+                        <!-- Product image-->
+                        {% for image in images %}
+                            <img class='card-img-top' src="{{ image.image.url }}" alt='Product' style='width: 200px;'>
+                            {% empty %}
+                            <img class='card-img-top' src='../../../images/no_image.png' alt='Image Not Available' style='width: 300px;'>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class='row'>
+        <div class='col-xl-12'>
+            <div class='card mb-4'>
+                <div class='card-body'>
+                        
+                    <!-- Product description -->
+                    <p>{{ auction.description }}</p>
+                        
+                    {% if auction.active == False and auction.buyer is not None %}
+                        <div class='row'>
+                            <!-- Comments -->
+                            <div class='col-xl-12'>
+                                <div class='card mb-4'>
+                                    <div class='card-header'>
+                                        <i class='fas fa-comments'></i>
+                                        Auction Details
+                                    </div>
+                                    <div class='card-body'>
+                                        <div class='alert alert-success' role='alert'>
+                                            The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                        
+                    {% if auction.creator != user and auction.active %}
+                        <div class='row'>
+                            <!-- Bid -->
+                            <div class='col-xl-6'>
+                                <div class='card mb-4'>
+                                    <div class='card-header'>
+                                        <i class='fas fa-money-bill-alt'></i>
+                                        Bid
+                                    </div>
+                                    <div class='card-body'>
+                                        <!-- Product price-->
+                                        <h6>
+                                            {% if auction.current_bid %}
+                                                Current price:<strong> &euro;{{auction.current_bid}}</strong>
+                                            {% else %}
+                                                Starting price:<strong> &euro;{{auction.starting_bid}}</strong>
+                                            {% endif %}
+                                        </h6>
+                                        <p>
+                                            {% if auction.current_bid is None %}
+                                                {% if auction.creator != user %}
+                                                    <div class='alert alert-secondary' role='alert'>
+                                                        Place the first bid on this auction.
+                                                    </div>
+                                                {% endif %}
+                                            {% elif auction.buyer is not None %}
+                                                {% if auction.creator == user %}
+                                                    <div class='alert alert-secondary' role='alert'>
+                                                        The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
+                                                    </div>
+                                                {% elif auction.buyer == user %}
+                                                    <div class='alert alert-success' role='alert'>
+                                                        Congratulations! Yours was the winning bid on <strong>{{ auction.title }}</strong>.
+                                                    </div>
+                                                {% else %}
+                                                    <div class='alert alert-warning' role='alert'>
+                                                        This item has already been sold.
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if error_min_value %}
+                                                <p>
+                                                    {% if auction.current_bid %}
+                                                        <div class='alert alert-warning' role='alert'>
+                                                            Your bid must be greater than <strong>&euro;{{ auction.current_bid|default:auction.starting_bid }}</strong>.
+                                                        </div>
+                                                    {% else %}
+                                                        <div class='alert alert-warning' role='alert'>
+                                                            Your bid must be greater than or equal to <strong>&euro;{{ auction.current_bid|default:auction.starting_bid }}</strong>.
+                                                        </div>
+                                                    {% endif %}
+                                                </p>
+                                            {% endif %}
+                                                
+                                            <div class='form-group'>
+                                                <form action="{% url 'auction_bid' auction.id %}" method='POST'>
+                                                    {% csrf_token %}
+                                                    <div class='form-group'>
+                                                        {{ bid_form }}
+                                                        <br>
+                                                        <button type='submit' class='btn btn-primary'>
+                                                            Place a bid
+                                                        </button>
+                                                        <a href="{% url 'index' %}" class='btn btn-secondary'>
+                                                            Cancel
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                <!-- Comments -->
+                                <div class='col-xl-6'>
+                                    <div class='card mb-4'>
+                                        <div class='card-header'>
+                                            <i class='fas fa-comments'></i>
+                                            Comments
+                                        </div>
+                                        <div class='card-body'>
+                                                
+                                            <!-- Comments -->
+                                            {% if auction.active %}
+                                                <div>
+                                                    <form action="{% url 'auction_comment' auction.id %}" method='POST'>
+                                                        {% csrf_token %}
+                                                        <div class='form-group'>
+                                                            {{ comment_form }}
+                                                            <br>
+                                                            <button type='submit' class='btn btn-success'>
+                                                                Add a comment
+                                                            </button>
+                                                            <a href="{% url 'index' %}" class='btn btn-secondary'>
+                                                                Cancel
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                                
+                                            {% for comment in comments %}
+                                                <div>
+                                                    <div class='text-muted'>
+                                                        <strong>{{ comment.user|default:"Unknown" }}</strong> commented on {{ comment.date_created }}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p>{{ comment.comment }}</p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif auction.creator == user and auction.active %}
+                        
+                            <div class='row'>
+                                <!-- Comments -->
+                                <div class='col-xl-12'>
+                                    <div class='card mb-4'>
+                                        <div class='card-header'>
+                                            <i class='fas fa-comments'></i>
+                                            Comments
+                                        </div>
+                                        <div class='card-body'>
+                                            <!-- Comments -->
+                                            {% if auction.active %}
+                                                <div>
+                                                    <form action="{% url 'auction_comment' auction.id %}" method='POST'>
+                                                        {% csrf_token %}
+                                                        <div class='form-group'>
+                                                            {{ comment_form }}
+                                                            <br>
+                                                            <button type='submit' class='btn btn-success'>
+                                                                Add a comment
+                                                            </button>
+                                                            <a href="{% url 'index' %}" class='btn btn-secondary'>
+                                                                Cancel
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                            
+                                            {% for comment in comments %}
+                                                <div>
+                                                    {{ comment.user|default:"Unknown" }} commented on {{ comment.date_created }}
+                                                </div>
+                                                <div>
+                                                    <p>{{ comment.comment }}</p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

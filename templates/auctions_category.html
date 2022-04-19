@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Auctions | {{ title }} {% endblock %}
+
+{% block categories %}
+    <!-- Divider -->
+    <hr class='sidebar-divider'>
+    
+    <!-- Heading -->
+    <div class='sidebar-heading'>
+        Categories
+    </div>
+
+    {% for category in categories %}
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'category_details_view' category.category_name %}">
+                <i class='fas fa-fw fa-folder-open'></i>
+                <span class='text-uppercase'>{{ category }}</span>
+                <span class='badge-custom'>
+                    {{ category.count_active_auctions }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+    
+{% endblock %}
+
+
+{% block body %}
+
+    <!-- Page Heading -->
+    <h1 class='h3 mb-4 text-gray-800'>Category: {{ title }}</h1>
+    
+    {% if auctions_count > 0 %}
+        <div class='card mb-4'>
+            <div class='card-body'>
+                <div class='row align-items-center'>
+                    {% for auction in pages %}
+                    <div class='col mb-5'>
+                        <div class='card h-100'>
+                            <!-- Product image-->
+                            <div class='auction_image_first d-flex justify-content-center'>
+                                <div class='auction_image_second'>
+                                    <img class='auction_image_third' src="{{ auction.image.image.url|default:'../../static/auctions/no_image.png' }}" alt='Product image'>
+                                </div>
+                            </div>
+                        
+                            <!-- Product details-->
+                            <div class='card-body p-4'>
+                                <div class='text-center'>
+                            
+                                    <!-- Product name-->
+                                    <h5 class='fw-bolder'>{{ auction.title }}</h5>
+                            
+                                    <!-- Product reviews-->
+                                    <div class='d-flex justify-content-center small text-warning mb-2'>
+                                        <div class='bi-star-fill'></div>
+                                        <div class='bi-star-fill'></div>
+                                        <div class='bi-star-fill'></div>
+                                        <div class='bi-star-fill'></div>
+                                        <div class='bi-star-fill'></div>
+                                    </div>
+                            
+                                    <!-- Product price-->
+                                    {% if auction.current_bid %}
+                                        &euro;{{auction.current_bid}}
+                                    {% else %}
+                                        &euro;{{auction.starting_bid}}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                    
+                            <!-- Product actions-->
+                            <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
+                                <div class='text-center'>
+                                    <a class='btn btn-outline-dark mt-auto' href="{% url 'auction_details_view' auction.id %}">
+                                        View details
+                                    </a>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if pages.has_other_pages %}
+                    <div class='d-flex justify-content-center'>
+                        <ul class='pagination'>
+                            {% if pages.has_previous %}
+                                <li class='page-item'>
+                                    <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                        &laquo;
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class='page-item disabled'>
+                                    <a class='page-link' href='#'>&laquo;</a>
+                                </li>
+                            {% endif %}
+                            {% for i in pages.paginator.page_range %}
+                                {% if pages.number == i %}
+                                    <li class='page-item active'>
+                                        <a class='page-link' href='#'>{{ i }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class='page-item'>
+                                        <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if pages.has_next %}
+                                <li class='page-item'>
+                                    <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                        &raquo;
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class='page-item disabled'>
+                                    <a class='page-link' href='#'>&raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    {% else %}
+        <br>
+        <div class='alert alert-info' role='alert'>
+            No active auctions in this category.
+        </div>
+    {% endif %}
+
+{% endblock %}
