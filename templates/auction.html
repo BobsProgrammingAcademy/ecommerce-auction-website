@@ -143,9 +143,20 @@
                                         Auction Details
                                     </div>
                                     <div class='card-body'>
-                                        <div class='alert alert-success' role='alert'>
-                                            The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
-                                        </div>
+
+                                        {% if auction.creator == user %}
+                                            <div class='alert alert-success' role='alert'>
+                                                The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
+                                            </div>
+                                        {% elif auction.buyer == user %}
+                                            <div class='alert alert-success' role='alert'>
+                                                Congratulations! Yours was the winning bid on <strong>{{ auction.title }}</strong>.
+                                            </div>
+                                        {% else %}
+                                            <div class='alert alert-warning' role='alert'>
+                                                This item has already been sold.
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -181,14 +192,6 @@
                                                 {% if auction.creator == user %}
                                                     <div class='alert alert-secondary' role='alert'>
                                                         The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
-                                                    </div>
-                                                {% elif auction.buyer == user %}
-                                                    <div class='alert alert-success' role='alert'>
-                                                        Congratulations! Yours was the winning bid on <strong>{{ auction.title }}</strong>.
-                                                    </div>
-                                                {% else %}
-                                                    <div class='alert alert-warning' role='alert'>
-                                                        This item has already been sold.
                                                     </div>
                                                 {% endif %}
                                             {% endif %}
