@@ -6,6 +6,14 @@ This is an eBay-like auction website built using **Django 4** with **Bootstrap 5
 
 ![plot](https://github.com/BobsProgrammingAcademy/Auction-Website/blob/main/static/images/dashboard.png?raw=true)
 
+
+## Table of Contents 
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Run the application](#run-the-application)
+- [Add data to the application](#add-data-to-the-application)
+
+
 ## Prerequisites
 
 Install the following prerequisites:
