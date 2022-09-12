@@ -1,6 +1,6 @@
 # Auction Website
 
-This is an eBay-like auction website built using **Django 4.0** with **Bootstrap 5** and **Chart.js** that uses a **PostgreSQL** database to store data.
+This is an eBay-like auction website built using **Django 4.0** with **Bootstrap 5** and **Chart.js 2.9** that uses a **PostgreSQL** database to store data.
 
 ![plot](https://github.com/BobsProgrammingAcademy/Auction-Website/blob/main/static/images/auctions.png?raw=true)
 
