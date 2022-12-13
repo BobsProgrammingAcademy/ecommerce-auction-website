@@ -118,7 +118,7 @@
                         {% for image in images %}
                             <img class='card-img-top' src="{{ image.image.url }}" alt='Product' style='width: 200px;'>
                             {% empty %}
-                            <img class='card-img-top' src='../../../images/no_image.png' alt='Image Not Available' style='width: 300px;'>
+                            <img class='card-img-top' src="{% static 'images/no_image.png' %}" alt='Image Not Available' style='width: 300px;'>
                         {% endfor %}
                     </div>
                 </div>
