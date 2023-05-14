@@ -130,7 +130,7 @@ def auction_create(request):
             for auction_form in image_form.cleaned_data:
                 if auction_form:
                     image = auction_form['image']
-                    
+
                     new_image = Image(auction=new_auction, image=image)
                     new_image.save()
 
@@ -159,7 +159,7 @@ def auction_create(request):
 
 def active_auctions_view(request):
     '''
-    It renders a page that displays all of 
+    It renders a page that displays all of
     the currently active auction listings
     Active auctions are paginated: 3 per page
     '''
@@ -193,12 +193,12 @@ def active_auctions_view(request):
         'pages': pages,
         'title': 'Active Auctions'
     })
-    
- 
+
+
 @login_required
 def watchlist_view(request):
     '''
-    It renders a page that displays all of 
+    It renders a page that displays all of
     the listings that a user has added to their watchlist
     Auctions are paginated: 3 per page
     '''
@@ -234,7 +234,7 @@ def watchlist_view(request):
 @login_required
 def watchlist_edit(request, auction_id, reverse_method):
     '''
-    It allows the users to edit the watchlist - 
+    It allows the users to edit the watchlist -
     add and remove items from the Watchlist
     '''
     auction = Auction.objects.get(id=auction_id)
@@ -302,12 +302,12 @@ def auction_bid(request, auction_id):
             'error_min_value': True,
             'title': 'Auction'
         })
- 
+
 
 def auction_close(request, auction_id):
     '''
-    It allows the signed in user who created the listing 
-    to “close” the auction, which makes the highest bidder 
+    It allows the signed in user who created the listing
+    to “close” the auction, which makes the highest bidder
     the winner of the auction and makes the listing no longer active
     '''
     auction = Auction.objects.get(id=auction_id)
@@ -339,7 +339,7 @@ def auction_comment(request, auction_id):
 
 def category_details_view(request, category_name):
     '''
-    Clicking on the name of any category takes the user to a page that 
+    Clicking on the name of any category takes the user to a page that
     displays all of the active listings in that category
     Auctions are paginated: 3 per page
     '''
