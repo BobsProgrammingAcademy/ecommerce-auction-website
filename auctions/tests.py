@@ -31,3 +31,12 @@ class IndexRequestTestCase(TestCase):
     def test_index_view(self):
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
+
+
+class LoginRequestTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_login_view(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
