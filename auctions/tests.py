@@ -49,3 +49,12 @@ class LoginRequestTestCase(TestCase):
     def test_login_view(self):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
+
+
+class ActiveAuctionsRequestTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_active_auctions_view(self):
+        response = self.client.get(reverse('active_auctions_view'))
+        self.assertEqual(response.status_code, 200)
