@@ -26,7 +26,7 @@ Install the following prerequisites:
 
 ## Installation
 
-### 1. Create a virtual environment
+#### 1. Create a virtual environment
 
 From the **root** directory run:
 
@@ -34,7 +34,7 @@ From the **root** directory run:
 python -m venv venv
 ```
 
-### 2. Activate the virtual environment
+#### 2. Activate the virtual environment
 
 From the **root** directory run:
 
@@ -50,7 +50,7 @@ On Windows:
 venv\scripts\activate
 ```
 
-### 3. Install required dependencies
+#### 3. Install required dependencies
 
 From the **root** directory run:
 
@@ -58,7 +58,7 @@ From the **root** directory run:
 pip install -r requirements.txt
 ```
 
-### 4. Set up a PostgreSQL database
+#### 4. Set up a PostgreSQL database
 
 With **PostgreSQL** up and running, in a new Terminal window run:
 
@@ -90,7 +90,7 @@ To quit **psql**, run:
 \q
 ```
 
-### 5. Set up environment variables
+#### 5. Set up environment variables
 
 From the **root** directory run:
 
@@ -112,7 +112,7 @@ DATABASE_PASS=yourpassword
 DATABASE_HOST=localhost
 ```
 
-### 6. Run migrations
+#### 6. Run migrations
 
 From the **root** directory run:
 
@@ -123,7 +123,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 7. Create an admin user to access the Django Admin interface
+#### 7. Create an admin user to access the Django Admin interface
 
 From the **root** directory run:
 
@@ -146,13 +146,11 @@ python manage.py runserver
 
 Go to http://127.0.0.1:8000/ to view the application.
 
-
 ## Add data to the application
 
 Add data through Django Admin.
 
 Go to http://127.0.0.1:8000/admin to access the Django Admin interface and sign in using the admin credentials.
-
 
 ## Copyright and License
 
