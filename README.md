@@ -15,7 +15,7 @@ This is an eBay-like e-commerce auction website built using **Django 4**, **HTML
 - [Copyright and License](#copyright-and-license)
 
 
-## Prerequisites
+### Prerequisites
 
 Install the following prerequisites:
 
@@ -24,7 +24,7 @@ Install the following prerequisites:
 3. [Visual Studio Code](https://code.visualstudio.com/download)
 
 
-## Installation
+### Installation
 
 #### 1. Create a virtual environment
 
@@ -100,7 +100,6 @@ touch .env
 
 The **touch** command will create the **.env** file in the **root** directory. This command works on Mac and Linux but not on Windows. If you are a Windows user, instead of using the command line, you can create the **.env** file manually by navigating in Visual Studio Code to the Explorer, and selecting the option **New File**.
 
-
 Next, declare environment variables in the **.env** file. Make sure you don't use quotation marks around the strings.
 
 ```bash
@@ -133,8 +132,7 @@ python manage.py createsuperuser
 
 When prompted, enter a username, email, and password.
 
-
-## Run the application
+### Run the application
 
 From the **root** directory run:
 
@@ -142,16 +140,16 @@ From the **root** directory run:
 python manage.py runserver
 ```
 
-## View the application
+### View the application
 
 Go to http://127.0.0.1:8000/ to view the application.
 
-## Add data to the application
+### Add data to the application
 
 Add data through Django Admin.
 
 Go to http://127.0.0.1:8000/admin to access the Django Admin interface and sign in using the admin credentials.
 
-## Copyright and License
+### Copyright and License
 
 Copyright © 2022 Bob's Programming Academy. Code released under the MIT license.
