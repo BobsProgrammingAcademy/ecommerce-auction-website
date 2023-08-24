@@ -19,7 +19,7 @@ This is an eBay-like e-commerce auction website built using **Django 4**, **HTML
 
 Install the following prerequisites:
 
-1. [Python 3.9.12 or higher](https://www.python.org/downloads/)
+1. [Python 3.8-3.11](https://www.python.org/downloads/)
 2. [PostgreSQL](https://www.postgresql.org/download/)
 3. [Visual Studio Code](https://code.visualstudio.com/download)
 
