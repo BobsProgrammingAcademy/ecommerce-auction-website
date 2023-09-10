@@ -2,10 +2,10 @@ name: Django CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
 
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 env:
   SECRET_KEY: yoursecretkey
