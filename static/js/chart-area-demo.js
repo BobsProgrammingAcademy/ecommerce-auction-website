@@ -3,8 +3,8 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
-var ctx = document.getElementById('myAreaChart');
-var myLineChart = new Chart(ctx, {
+const ctxAreaChart = document.getElementById('myAreaChart');
+const myAreaChart = new Chart(ctxAreaChart, {
   type: 'line',
   data: {
     labels: ['Clothes', 'Food', 'Electronics', 'Books', 'Films', 'Toys', 'Health'],
