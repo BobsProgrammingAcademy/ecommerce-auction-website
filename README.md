@@ -99,7 +99,7 @@ From the **root** directory, run:
 touch .env
 ```
 
-The **touch** command will create the **.env** file in the **root** directory. This command works on Mac and Linux but not on Windows. If you are a Windows user, instead of using the command line, you can create the **.env** file manually by navigating in Visual Studio Code to the Explorer, and selecting the option **New File**.
+The **touch** command will create the **.env** file in the **root** directory. This command works on Mac and Linux but not on Windows. If you are a Windows user, instead of using the command line, you can create the **.env** file manually by navigating in Visual Studio Code to the Explorer and selecting the option **New File**.
 
 Next, declare environment variables in the **.env** file. Make sure you don't use quotation marks around the strings.
 
