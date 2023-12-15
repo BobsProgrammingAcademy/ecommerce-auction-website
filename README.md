@@ -11,6 +11,7 @@ This is an eBay-like e-commerce auction website built using **Django 4**, **HTML
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Run the application](#run-the-application)
+- [Run the tests](#run-the-tests)
 - [Add data to the application](#add-data-to-the-application)
 - [Copyright and License](#copyright-and-license)
 
@@ -133,6 +134,7 @@ python manage.py createsuperuser
 
 When prompted, enter a username, email, and password.
 
+
 ### Run the application
 
 From the **root** directory, run:
@@ -140,6 +142,17 @@ From the **root** directory, run:
 ```bash
 python manage.py runserver
 ```
+
+
+### Run the tests
+
+From the **root** directory, run:
+
+```bash
+python manage.py test --pattern="tests.py"
+
+```
+
 
 ### View the application
 
@@ -150,6 +163,7 @@ Go to http://127.0.0.1:8000/ to view the application.
 Add data through Django Admin.
 
 Go to http://127.0.0.1:8000/admin to access the Django Admin interface and sign in using the admin credentials.
+
 
 ### Copyright and License
 
