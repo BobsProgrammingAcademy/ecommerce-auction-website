@@ -16,7 +16,7 @@ This is an eBay-like e-commerce auction website built using **Django 4**, **HTML
 - [Copyright and License](#copyright-and-license)
 
 
-### Prerequisites
+## Prerequisites
 
 Install the following prerequisites:
 
@@ -26,9 +26,9 @@ Install the following prerequisites:
 3. [Visual Studio Code](https://code.visualstudio.com/download)
 
 
-### Installation
+## Installation
 
-#### 1. Create a virtual environment
+### 1. Create a virtual environment
 
 From the **root** directory, run:
 
@@ -36,7 +36,7 @@ From the **root** directory, run:
 python -m venv venv
 ```
 
-#### 2. Activate the virtual environment
+### 2. Activate the virtual environment
 
 From the **root** directory, run:
 
@@ -52,7 +52,7 @@ On Windows:
 venv\scripts\activate
 ```
 
-#### 3. Install required dependencies
+### 3. Install required dependencies
 
 From the **root** directory, run:
 
@@ -60,7 +60,7 @@ From the **root** directory, run:
 pip install -r requirements.txt
 ```
 
-#### 4. Set up a PostgreSQL database
+### 4. Set up a PostgreSQL database
 
 With **PostgreSQL** up and running, in a new Terminal window, run:
 
@@ -92,7 +92,7 @@ To quit **psql**, run:
 \q
 ```
 
-#### 5. Set up environment variables
+### 5. Set up environment variables
 
 From the **root** directory, run:
 
@@ -113,7 +113,7 @@ DATABASE_PASS=yourpassword
 DATABASE_HOST=localhost
 ```
 
-#### 6. Run migrations
+### 6. Run migrations
 
 From the **root** directory, run:
 
@@ -124,7 +124,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-#### 7. Create an admin user to access the Django Admin interface
+### 7. Create an admin user to access the Django Admin interface
 
 From the **root** directory, run:
 
@@ -135,7 +135,7 @@ python manage.py createsuperuser
 When prompted, enter a username, email, and password.
 
 
-### Run the application
+## Run the application
 
 From the **root** directory, run:
 
@@ -144,7 +144,7 @@ python manage.py runserver
 ```
 
 
-### Run the tests
+## Run the tests
 
 From the **root** directory, run:
 
@@ -154,17 +154,17 @@ python manage.py test --pattern="tests.py"
 ```
 
 
-### View the application
+## View the application
 
 Go to http://127.0.0.1:8000/ to view the application.
 
-### Add data to the application
+## Add data to the application
 
 Add data through Django Admin.
 
 Go to http://127.0.0.1:8000/admin to access the Django Admin interface and sign in using the admin credentials.
 
 
-### Copyright and License
+## Copyright and License
 
 Copyright © 2022 Bob's Programming Academy. Code released under the MIT license.
