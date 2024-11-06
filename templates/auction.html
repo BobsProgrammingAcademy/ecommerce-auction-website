@@ -4,6 +4,7 @@
 {% block title %}Auctions | {{ title }} {% endblock %}
 
 {% block categories %}
+
     <!-- Divider -->
     <hr class='sidebar-divider'>
     
@@ -71,6 +72,7 @@
             {% endif %}
         </a>
     </div>
+
     <br>
     
     {% if auction.creator == user and auction.active %}
@@ -105,6 +107,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
         
     {% elif auction.creator != user and auction.active %}
@@ -120,6 +123,7 @@
                             {% empty %}
                             <img class='card-img-top' src="{% static 'images/no_image.png' %}" alt='Image Not Available' style='width: 300px;'>
                         {% endfor %}
+                        
                     </div>
                 </div>
             </div>
@@ -166,6 +170,7 @@
                         
                     {% if auction.creator != user and auction.active %}
                         <div class='row'>
+                            
                             <!-- Bid -->
                             <div class='col-xl-6'>
                                 <div class='card mb-4'>
@@ -174,6 +179,7 @@
                                         Bid
                                     </div>
                                     <div class='card-body'>
+                                        
                                         <!-- Product price-->
                                         <h6>
                                             {% if auction.current_bid %}
@@ -182,6 +188,7 @@
                                                 Starting price:<strong> &euro;{{auction.starting_bid}}</strong>
                                             {% endif %}
                                         </h6>
+                                        
                                         <p>
                                             {% if auction.current_bid is None %}
                                                 {% if auction.creator != user %}
@@ -275,6 +282,7 @@
                         {% elif auction.creator == user and auction.active %}
                         
                             <div class='row'>
+                                
                                 <!-- Comments -->
                                 <div class='col-xl-12'>
                                     <div class='card mb-4'>
@@ -282,7 +290,9 @@
                                             <i class='fas fa-comments'></i>
                                             Comments
                                         </div>
+                                        
                                         <div class='card-body'>
+                                            
                                             <!-- Comments -->
                                             {% if auction.active %}
                                                 <div>
@@ -310,11 +320,13 @@
                                                     <p>{{ comment.comment }}</p>
                                                 </div>
                                             {% endfor %}
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
+                    
                     </div>
                 </div>
             </div>
