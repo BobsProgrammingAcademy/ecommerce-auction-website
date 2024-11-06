@@ -3,6 +3,7 @@
 {% block title %}Auctions | {{ title }} {% endblock %}
 
 {% block categories %}
+
     <!-- Divider -->
     <hr class='sidebar-divider'>
     
@@ -38,6 +39,7 @@
                     {% for auction in pages %}
                     <div class='col mb-5'>
                         <div class='card h-100'>
+                            
                             <!-- Product image-->
                             <div class='auction_image_first d-flex justify-content-center'>
                                 <div class='auction_image_second'>
@@ -98,6 +100,7 @@
                                     <a class='page-link' href='#'>&laquo;</a>
                                 </li>
                             {% endif %}
+                            
                             {% for i in pages.paginator.page_range %}
                                 {% if pages.number == i %}
                                     <li class='page-item active'>
@@ -109,6 +112,7 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
+                            
                             {% if pages.has_next %}
                                 <li class='page-item'>
                                     <a class='page-link' href='?page={{ pages.next_page_number }}'>
@@ -120,6 +124,7 @@
                                     <a class='page-link' href='#'>&raquo;</a>
                                 </li>
                             {% endif %}
+                            
                         </ul>
                     </div>
                 {% endif %}
