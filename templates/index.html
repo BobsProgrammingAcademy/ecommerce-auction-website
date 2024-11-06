@@ -3,6 +3,7 @@
 {% block title %}Auctions | {{ title }} {% endblock %}
 
 {% block categories %}
+
     <!-- Divider -->
     <hr class='sidebar-divider'>
     
@@ -27,6 +28,7 @@
 
 
 {% block body %}
+
     <!-- Page Heading -->
     <h1 class='h3 mb-4 text-gray-800'>Dashboard</h1>
 
@@ -195,6 +197,7 @@
                                 <a class='page-link' href='#'>&laquo;</a>
                             </li>
                         {% endif %}
+                        
                         {% for i in pages.paginator.page_range %}
                             {% if pages.number == i %}
                                 <li class='page-item active'>
@@ -206,6 +209,7 @@
                                 </li>
                             {% endif %}
                         {% endfor %}
+                        
                         {% if pages.has_next %}
                             <li class='page-item'>
                                 <a class='page-link' href='?page={{ pages.next_page_number }}'>&raquo;</a>
@@ -215,6 +219,7 @@
                                 <a class='page-link' href='#'>&raquo;</a>
                             </li>
                         {% endif %}
+                        
                     </ul>
                 </div>
             {% endif %}
