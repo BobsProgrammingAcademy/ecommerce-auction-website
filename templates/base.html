@@ -58,6 +58,7 @@
                 </li>
 
                 {% if user.is_authenticated %}
+                
                     <!-- Nav Item - Watchlist -->
                     <li class='nav-item'>
                         <a class='nav-link' href="{% url 'watchlist_view' %}">
@@ -73,6 +74,7 @@
                             <span>CREATE AUCTION</span>
                         </a>
                     </li>
+                
                 {% endif %}
 
                 {% block categories %}
