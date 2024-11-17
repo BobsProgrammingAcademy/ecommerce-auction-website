@@ -45,6 +45,7 @@
                     <form action="{% url 'auction_create' %}" method='POST' enctype='multipart/form-data'>
                         {% csrf_token %}
                         <div class='form-group'>
+                            
                             {{ auction_form.as_p }}
                             {{ image_form.management_form }}
                             
