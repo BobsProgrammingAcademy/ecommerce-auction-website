@@ -88,12 +88,14 @@
                 <!-- Signed in user -->
                 <li class='nav-item'>
                     <div class='nav-link'>
+                        
                         {% if user.is_authenticated %}
                             <div class='sidebar-text-gray'>Signed in as:</div>
                             <div class='sidebar-text-white'>{{ user.username }}</div>
                         {% else %}
                             <div class='sidebar-text-gray'>Not signed in.</div>
                         {% endif %}
+                        
                     </div>
                 </li>
 
@@ -166,6 +168,7 @@
 
                             <!-- Nav Item - User Information -->
                             {% if user.is_authenticated %}
+                            
                                 <li class='nav-item dropdown no-arrow'>
                                     <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
                                         <i class='fas fa-user fa-fw fa-lg'></i>
@@ -180,7 +183,9 @@
                                         </a>
                                     </div>
                                 </li>
+                            
                             {% else %}
+                            
                                 <li class='nav-item'>
                                     <a class='nav-link' href="{% url 'login' %}">
                                         <i class='fas fa-sign-in-alt'></i>&nbsp;Log In
@@ -191,6 +196,7 @@
                                         <i class='fas fa-user-plus'></i>&nbsp;Register
                                     </a>
                                 </li>
+                            
                             {% endif %}                            
                             
                         </ul>
