@@ -46,11 +46,13 @@
     
     <!-- Product price -->
     <h4 class='fw-bolder'>
+        
         {% if auction.current_bid %}
             &euro;{{auction.current_bid}}
         {% else %}
             &euro;{{auction.starting_bid}}
         {% endif %}
+        
     </h4>
     
     <!-- Product reviews-->
@@ -65,11 +67,13 @@
     <!-- Watchlist -->
     <div>
         <a class='btn btn-outline-success mt-auto' href="{% url 'watchlist_edit' auction.id 'auction_details_view' %}">
+            
             {% if auction.is_watched %}
                 Remove from Watchlist
             {% else %}
                 Add to Watchlist
             {% endif %}
+            
         </a>
     </div>
 
@@ -162,6 +166,7 @@
                                                 This item has already been sold.
                                             </div>
                                         {% endif %}
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -196,16 +201,17 @@
                                                         Place the first bid on this auction.
                                                     </div>
                                                 {% endif %}
-                                            {% elif auction.buyer is not None %}
+                                        
+                                              {% elif auction.buyer is not None %}
                                                 {% if auction.creator == user %}
                                                     <div class='alert alert-secondary' role='alert'>
                                                         The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
                                                     </div>
                                                 {% endif %}
-                                            {% endif %}
+                                              {% endif %}
                                                 
-                                            {% if error_min_value %}
-                                                <p>
+                                              {% if error_min_value %}
+                                                 <p>
                                                     {% if auction.current_bid %}
                                                         <div class='alert alert-warning' role='alert'>
                                                             Your bid must be greater than <strong>&euro;{{ auction.current_bid|default:auction.starting_bid }}</strong>.
@@ -215,10 +221,10 @@
                                                             Your bid must be greater than or equal to <strong>&euro;{{ auction.current_bid|default:auction.starting_bid }}</strong>.
                                                         </div>
                                                     {% endif %}
-                                                </p>
-                                            {% endif %}
+                                                 </p>
+                                              {% endif %}
                                                 
-                                            <div class='form-group'>
+                                              <div class='form-group'>
                                                 <form action="{% url 'auction_bid' auction.id %}" method='POST'>
                                                     {% csrf_token %}
                                                     <div class='form-group'>
@@ -232,10 +238,10 @@
                                                         </a>
                                                     </div>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
                                     
                                 <!-- Comments -->
                                 <div class='col-xl-6'>
@@ -275,6 +281,7 @@
                                                     <p>{{ comment.comment }}</p>
                                                 </div>
                                             {% endfor %}
+                                            
                                         </div>
                                     </div>
                                 </div>
