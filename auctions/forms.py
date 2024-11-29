@@ -2,6 +2,7 @@ from django import forms
 
 from .models import Auction, Bid, Comment, Image
 
+
 class AuctionForm(forms.ModelForm):
     '''
     A ModelForm class for creating a new auction listing
